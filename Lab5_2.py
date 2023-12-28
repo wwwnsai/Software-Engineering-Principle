@@ -1,8 +1,3 @@
-import sys
-from PySide6.QtCore import *
-from PySide6.QtWidgets import *
-from PySide6.QtGui import *
-
 
 
 class Transportation(object):
@@ -41,14 +36,22 @@ class Train( Transportation ):
    def find_cost(self):
       return (5 * self.distance)
    
+class Boat(Transportation):
+   def __init__(self, start, end, distance):
+      Transportation.__init__(self, start,end, distance)
+      
+   def find_cost(self):
+      return (7 * self.distance)
+   
+   
 # main program
 
 travel_cost = 0
 
 trip = [ Walk("KMITL","KMITL SCB Bank",0.6),
          Taxi("KMITL SCB Bank","Ladkrabang Station",5),
-        #  Train("Ladkrabang Station","Payathai Station",40,6),
-        #  Bike("Payathai Station","The British Council",3) 
+         Train("Ladkrabang Station","Payathai Station",40),
+         Boat("Tian pier","Iconsiam",3) 
          ]
 
 for travel in trip:
