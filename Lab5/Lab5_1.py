@@ -52,13 +52,41 @@ class Simple_drawing_window2(QWidget):
         p.drawPixmap(QRect(200, 100, 320, 320), self.rabbit)
         p.end()
 
+class Simple_drawing_window3(QWidget):
+    def __init__(self):
+        QWidget.__init__(self,None)
+        self.setWindowTitle("Simple Github Drawing 3")
+        self.rabbit = QPixmap("lab4/images/rabbit.png")
+        
+    def paintEvent(self,e):
+        p = QPainter()
+        p.begin(self)
+        
+        p.setPen(QColor(0,0,0))
+        p.setBrush(QColor(0,127,0))
+        p.drawPolygon([
+            QPoint(70,100), QPoint(100,130),
+            QPoint(130,100), QPoint(100,150)
+        ])
+        
+        p.setPen(QColor(230,191,0))
+        p.setBrush(QColor(230,191,0))
+        p.drawPie(50,150,100,100,0,180 *16)
+        
+        p.drawPolygon(
+            [QPoint(50,200), QPoint(150,200), QPoint(150,350), QPoint(50,350)]
+        )
+        p.drawPixmap(QRect(200,100,320,320), self.rabbit)
+        p.end()
+        
 def main():
     app = QApplication(sys.argv)
     w1 = simple_drawing_window1()
     w2 = Simple_drawing_window2()
+    w3 = Simple_drawing_window3()
     w1.show()
     w2.show()
-
+    w3.show()
     return app.exec()
 
 if __name__ == "__main__":
