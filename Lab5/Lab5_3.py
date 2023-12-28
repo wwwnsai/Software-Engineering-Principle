@@ -25,7 +25,6 @@ class Disk(object):
         t.penup()
         t.goto(self.xpos, self.ypos)
         t.pendown()
-        t.begin_fill()
         t.forward(self.width/2)
         t.left(90)
         t.forward(self.height)
@@ -35,7 +34,6 @@ class Disk(object):
         t.forward(self.height)
         t.left(90)
         t.forward(self.width/2)
-        t.end_fill()
 
     def newpos(self, xpos, ypos):
         self.xpos = xpos
@@ -43,25 +41,11 @@ class Disk(object):
 
     def cleardisk(self):
         t.penup()
+        t.pencolor("white")
         t.goto(self.xpos, self.ypos)
         t.pendown()
-        t.color("white")
-        t.begin_fill()
-        t.forward(self.width/2)
-        t.left(90)
-        t.forward(self.height)
-        t.left(90)
-        t.forward(self.width)
-        t.left(90)
-        t.forward(self.height)
-        t.left(90)
-        t.forward(self.width/2)
-        t.end_fill()
-        self.name = ""
-        self.xpos = 0
-        self.ypos = 0
-        self.height = 0
-        self.width = 0
+        # t.clear()
+
 
 
 
@@ -96,22 +80,15 @@ class Pole(object):
         t.forward(self.pthick/2)
         
     def pushdisk(self, disk):
-        if not self.stack or disk.width < self.stack[-1].width:
-            self.stack.append(disk)
-            disk.newpos(self.pxpos, self.toppos)
-            disk.showdisk()
-            self.toppos += disk.height
-        else:
-            print("Error")
-    
+        self.stack.append(disk)
+        disk.showdisk()
+        self.toppos += 1
+
     def popdisk(self):
-        if self.stack:
-            popped_disk = self.stack.pop()
-            self.toppos -= popped_disk.height  # Update top position after popping
-            return popped_disk
-        else:
-            print("Error: Stack is empty")
-            return None
+        disk = self.stack.pop()
+        disk.cleardisk()
+        self.toppos -= 1
+        return disk
 
      
 
