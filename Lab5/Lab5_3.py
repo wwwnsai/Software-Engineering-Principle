@@ -75,7 +75,33 @@ if __name__ == "__main__":
 
 
 
-
+class Pole(object):
+    def __init__(self,name="", xpos=0,ypos=0,thick=10,length=100):
+        self.pname = name
+        self.stack = []
+        self.toppos = 0
+        self.pxpos = xpos
+        self.pypos = ypos
+        self.pthick = thick
+        self.plength = length
+        
+    def showpole(self):
+        t.penup()
+        t.write(self.pname)
+        
+        t.goto(self.pxpos,self.pypos)
+        t.pendown()
+        t.forward(self.pthick/2)
+        t.left(90)
+        t.forward(self.plength)
+        t.left(90)
+        t.forward(self.pthick)
+        t.left(90)
+        t.forward(self.plength)
+        t.left(90)
+        t.left(self.pthick/2)
+        
+     
 
 
 class Hanoi(object):
