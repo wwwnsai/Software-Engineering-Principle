@@ -63,15 +63,15 @@ class Disk(object):
         self.height = 0
         self.width = 0
 
-def main():
-    disk = Disk("d1", 0, 0, 20, 40)
-    disk.showdisk()
-    disk.cleardisk()
-    turtle.mainloop()
+# def main():
+#     disk = Disk("d1", 0, 0, 20, 40)
+#     disk.showdisk()
+#     disk.cleardisk()
+#     turtle.mainloop()
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
 
 
@@ -87,9 +87,13 @@ class Pole(object):
         
     def showpole(self):
         t.penup()
-        t.write(self.pname)
-        
         t.goto(self.pxpos,self.pypos)
+        t.right(90)
+        t.forward(15)
+        t.write(self.pname)
+        t.back(15)
+        t.left(90)
+
         t.pendown()
         t.forward(self.pthick/2)
         t.left(90)
@@ -99,8 +103,13 @@ class Pole(object):
         t.left(90)
         t.forward(self.plength)
         t.left(90)
-        t.left(self.pthick/2)
+        t.forward(self.pthick/2)
         
+    def pushdisk():
+        pass
+    
+    def popdisk():
+        pass
      
 
 
