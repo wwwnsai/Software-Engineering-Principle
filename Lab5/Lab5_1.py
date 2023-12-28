@@ -56,7 +56,7 @@ class Simple_drawing_window3(QWidget):
     def __init__(self):
         QWidget.__init__(self,None)
         self.setWindowTitle("Simple Github Drawing 3")
-        self.rabbit = QPixmap("lab4/images/rabbit.png")
+        self.rabbit = QPixmap("Lab5/rabbit.png")
         
     def paintEvent(self,e):
         p = QPainter()
