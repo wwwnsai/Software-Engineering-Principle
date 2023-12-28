@@ -7,7 +7,7 @@ import turtle
 screen = turtle.Screen()
 screen.bgcolor("white") 
 t = turtle.Turtle()
-t.speed(1)
+t.speed(10)
 
 class Disk(object):
     def __init__(self, name="", xpos=0, ypos=0, height=20, width=40):
@@ -63,16 +63,6 @@ class Disk(object):
         self.height = 0
         self.width = 0
 
-# def main():
-#     disk = Disk("d1", 0, 0, 20, 40)
-#     disk.showdisk()
-#     disk.cleardisk()
-#     turtle.mainloop()
-
-
-# if __name__ == "__main__":
-#     main()
-
 
 
 class Pole(object):
@@ -114,8 +104,15 @@ class Pole(object):
         else:
             print("Error")
     
-    def popdisk(self, disk):
-        pass
+    def popdisk(self):
+        if self.stack:
+            popped_disk = self.stack.pop()
+            self.toppos -= popped_disk.height  # Update top position after popping
+            return popped_disk
+        else:
+            print("Error: Stack is empty")
+            return None
+
      
 
 
