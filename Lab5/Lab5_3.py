@@ -105,10 +105,16 @@ class Pole(object):
         t.left(90)
         t.forward(self.pthick/2)
         
-    def pushdisk():
-        pass
+    def pushdisk(self, disk):
+        if not self.stack or disk.width < self.stack[-1].width:
+            self.stack.append(disk)
+            disk.newpos(self.pxpos, self.toppos)
+            disk.showdisk()
+            self.toppos += disk.height
+        else:
+            print("Error")
     
-    def popdisk():
+    def popdisk(self, disk):
         pass
      
 
