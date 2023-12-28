@@ -23,6 +23,10 @@ class Disk(object):
         print("Disk Height: ", self.height)
         print("Disk Width: ", self.width)
         t.penup()
+        t.goto(self.xpos-self.width/2 - 20, self.ypos)
+        t.pendown()
+        t.write(self.name)
+        t.penup()
         t.goto(self.xpos, self.ypos)
         t.pendown()
         t.forward(self.width/2)
@@ -44,7 +48,6 @@ class Disk(object):
         t.pencolor("white")
         t.goto(self.xpos, self.ypos)
         t.pendown()
-        # t.clear()
 
 
 
@@ -81,13 +84,15 @@ class Pole(object):
         
     def pushdisk(self, disk):
         self.stack.append(disk)
+        disk.newpos(self.pxpos, self.toppos)
         disk.showdisk()
-        self.toppos += 1
+        self.toppos += disk.height
 
     def popdisk(self):
         disk = self.stack.pop()
         disk.cleardisk()
-        self.toppos -= 1
+        self.toppos -= disk.height
+        # disk.showdisk()
         return disk
 
      
@@ -101,12 +106,19 @@ class Hanoi(object):
         self.startp.showpole()
         self.workspacep.showpole()
         self.destinationp.showpole()
+        count = 0
         for i in range(n):
-            self.startp.pushdisk(Disk("d" + str(i), 0, i * 150, 20, (n-1) * 30))
+            self.startp.pushdisk(Disk("d" + str(i), 0, (i) * 150, 20, (n-count) * 30))
+            count += 1
+        
+        for i in range(1):
+            self.move_disk(self.startp, self.workspacep)
+
+        turtle.done()
         
     def move_disk(self, start, destination):
         disk = start.popdisk()
-        destination.pushdisk(disk)
+        # destination.pushdisk(disk)
 
     def move_tower(self, n, s, d, w):
         if n == 1:
